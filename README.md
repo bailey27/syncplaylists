@@ -15,7 +15,7 @@ I have 2014 BMW F10, and I don't like to use my iPhone as an iPod with a cable b
 
 My car supports playing .m4a and .mp3 files from a USB flash drive.  It also supports .m3u playlists.
 
-syncplaylists takes the path to the root of where you want to the songs and playlists to go and a list of iTunes playlists you want to put on the device.
+syncplaylists takes the path to the root of where you want the songs and playlists to go and a list of iTunes playlists you want to put on the device.
 
 syncplaylists first *DELETES* any .m3u playlist files there, and it also *DELETES* any .m4a or .mp3 files that are there that aren't in the iTunes playlists you specified.
 
