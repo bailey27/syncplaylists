@@ -39,5 +39,5 @@ Note: the names of playlists are case sensitive.
 
 BUGS
 ----
-When syncplaylists prints the names of the files being deleted or copied, certain non-English characters display as ?.  I am not sure why.  However, the filenames are properly written in the .m3u files and the files are copied/deleted correctly.  This happens with some languages but not others.  Spanish and Czech characters display correctly, but Russian characters display as ? when printed to the console.
+When syncplaylists prints the names of the files being deleted or copied, certain non-English characters display as ?.  However, the filenames are properly written in the .m3u files and the files are copied/deleted correctly.  This happens with some languages but not others.  Spanish and Czech characters display correctly, but Russian characters display as ? when printed to the console.
 
