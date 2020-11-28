@@ -21,7 +21,7 @@ syncplaylists takes the path to the root of where you want the songs and playlis
 
 syncplaylists first *DELETES* any .m3u playlist files there, and it also *DELETES* any .m4a or .mp3 files that are there that aren't in the iTunes playlists you specified.
 
-Then it copies any songs that aren't already there and writes .m3u playlists files for each iTunes playlist you specified consisting of the name of a song on each line.  It copies only .m4a and .mp3 files.  It skips .m4p files because they won't work in the car.
+Then it copies any songs that aren't already there and writes .m3u playlists files for each iTunes playlist you specified consisting of the name of a song on each line.  It copies only .m4a and .mp3 files.  It skips .m4p (DRM-protected) files because they won't work in the car.
 
 syncplaylists always sorts the songs alphabetically by name and ignores leading "A" and leading "The" as well as ignoring track numbers.
 
