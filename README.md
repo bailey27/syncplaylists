@@ -41,3 +41,16 @@ BUGS
 ----
 When syncplaylists prints the names of the files being deleted or copied, certain non-English characters display as "?".  However, the file names are properly written in the .m3u play list files and the files are copied/deleted correctly.  This happens with some languages but not others.  Spanish and Czech characters display correctly, but Russian characters display as ? when printed to the console.
 
+syncplaylists is outputting utf-8.  I tried calling SetConsoleOutputCP(CP_UTF8) but it appears to nave no effect on the problem.
+
+However if you run this command before running syncplaylists
+
+```
+
+chcp 65001
+
+```
+
+which sets to code page to CP_UTF8 (65001), then Russian characters also display properly.
+
+If that doesn't work, then you might need to change the console (cmd.exe) window's font to one that supports the language that isn't displaying properly.
