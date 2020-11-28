@@ -21,7 +21,7 @@ syncplaylists takes the path to the root of where you want the songs and playlis
 
 syncplaylists first *DELETES* any .m3u playlist files there, and it also *DELETES* any .m4a or .mp3 files that are there that aren't in the iTunes playlists you specified.
 
-Then it copies any songs that aren't already there and writes .m3u playlists files for each iTunes playlist you specified consisting of the name of a song on each line.  It copies only .m4a and .mp3 files.  It skips .m4p (DRM-protected) files because they won't work in the car.
+Then it copies any songs that aren't already there and writes .m3u play lists files for each iTunes playlist you specified consisting of the name of a song on each line.  It copies only .m4a and .mp3 files.  It skips .m4p (DRM-protected) files because they won't work in the car.
 
 syncplaylists always sorts the songs alphabetically by name and ignores leading "A" and leading "The" as well as ignoring track numbers.
 
@@ -39,5 +39,5 @@ Note: the names of playlists are case sensitive.
 
 BUGS
 ----
-When syncplaylists prints the names of the files being deleted or copied, certain non-English characters display as "?".  However, the file names are properly written in the .m3u files and the files are copied/deleted correctly.  This happens with some languages but not others.  Spanish and Czech characters display correctly, but Russian characters display as ? when printed to the console.
+When syncplaylists prints the names of the files being deleted or copied, certain non-English characters display as "?".  However, the file names are properly written in the .m3u play list files and the files are copied/deleted correctly.  This happens with some languages but not others.  Spanish and Czech characters display correctly, but Russian characters display as ? when printed to the console.
 
