@@ -141,12 +141,7 @@ namespace syncplaylists {
 
             auto versionResourceStorage = vector<char>(vSize);
 
-            void* pVersionResource = &versionResourceStorage[0];
-
-            if (pVersionResource == NULL)
-            {
-                return false;
-            }
+            void* pVersionResource = &versionResourceStorage[0];            
 
             if (!GetFileVersionInfo(fullPath, NULL, vSize, pVersionResource)) {
                 return false;
