@@ -5,7 +5,7 @@ syncplaylists
 ------
 This is a Windows program I wrote to sync my iTunes playlists to a USB drive. 
 
-You can download the executable from the releases page.  The executable is signed by the developer, Bailey Brown.  
+You can download the executable from the [releases page](https://github.com/bailey27/syncplaylists/releases).  The executable is signed by the developer, Bailey Brown.  
 
 There are no external dependencies.  However, you must have iTunes installed for syncplaylists to work, though. If you run syncplaylists, iTunes will automatically be launched if it isn't running already.  
 
