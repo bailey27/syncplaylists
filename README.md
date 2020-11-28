@@ -9,9 +9,9 @@ You can download the executable from the [releases page](https://github.com/bail
 
 There are no external dependencies.  However, you must have iTunes installed for syncplaylists to work, though. If you run syncplaylists, iTunes will automatically be launched if it isn't running already.  
 
-You can build it yourself if you want using the Community Edition of Microsoft Visual Studio. 
+You can build syncplaylists yourself if you want using the Community Edition of Microsoft Visual Studio. 
 
-Whether or not it does what you want, I think it would serve as reasonable example code for using the iTunes COM interface on Windows.
+Whether or not syncplaylists does what you want, I think it would serve as reasonable example code for using the iTunes COM interface on Windows.
 
 I have 2014 BMW F10, and I don't like to use my iPhone as an iPod with a cable because it skips songs sometimes.  I also don't like using bluetooth from the phone because I think I can hear the difference in sound quality vs. a hard-wired connection.
 
