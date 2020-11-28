@@ -33,26 +33,6 @@ namespace syncplaylists {
 
     namespace util {     
 
-     /*
-     * This method takes a function that returns a resource,a function that deletes
-     * the resource and arguments that are to be passed to the function that returns a
-     * resource.
-     *
-     * example usecase of a function:
-     *
-     * auto woof = util::unique_rsc( ::fopen,::fclose,"/woof/foo/bar","r" ) ;
-     */
-
-        template<typename Function, typename Deleter, typename ... Arguments>
-        auto unique_rsc(Function&& function, Deleter&& deleter, Arguments&& ... args)
-        {
-            using A = std::remove_pointer_t<std::result_of_t<Function(Arguments &&...)>>;
-            using B = std::decay_t<Deleter>;
-
-            return std::unique_ptr<A, B>(function(std::forward<Arguments>(args)...),
-                std::forward<Deleter>(deleter));
-        }
-
         const char* unicodeToUtf8(const wchar_t* unicode_str, std::string& storage);
 
         void printErr(const std::wstring& ws);

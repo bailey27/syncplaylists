@@ -139,9 +139,9 @@ namespace syncplaylists {
                 return false;
             }
 
-            auto pVersionResourceHandle = unique_rsc(malloc, free, vSize);
+            auto versionResourceStorage = vector<char>(vSize);
 
-            void* pVersionResource = pVersionResourceHandle.get();
+            void* pVersionResource = &versionResourceStorage[0];
 
             if (pVersionResource == NULL)
             {
