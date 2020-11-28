@@ -3,7 +3,7 @@
 
 syncplaylists
 ------
-This is a Windows program I wrote to sync my iTunes playlists to a USB drive. 
+This is a Windows console-mode program I wrote to sync my iTunes playlists to a USB drive. 
 
 You can download the executable from the [releases page](https://github.com/bailey27/syncplaylists/releases).  The executable is signed by the developer, Bailey Brown.  
 
