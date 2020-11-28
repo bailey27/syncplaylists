@@ -1,0 +1,72 @@
+#pragma once
+/*
+syncplaylists : Copies music files from specified iTunes playlists to specfied
+                directory and writes .m3u playlist files.  Deletes all music
+                and .m3u files that are not specified in the playlists.
+
+Copyright (C) 2016-2020 Bailey Brown (github.com/bailey27/cppcryptfs)
+
+cppcryptfs is based on the design of gocryptfs (github.com/rfjakob/gocryptfs)
+
+The MIT License (MIT)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+namespace syncplaylists {
+
+    namespace util {     
+
+     /*
+     * This method takes a function that returns a resource,a function that deletes
+     * the resource and arguments that are to be passed to the function that returns a
+     * resource.
+     *
+     * example usecase of a function:
+     *
+     * auto woof = util::unique_rsc( ::fopen,::fclose,"/woof/foo/bar","r" ) ;
+     */
+
+        template<typename Function, typename Deleter, typename ... Arguments>
+        auto unique_rsc(Function&& function, Deleter&& deleter, Arguments&& ... args)
+        {
+            using A = std::remove_pointer_t<std::result_of_t<Function(Arguments &&...)>>;
+            using B = std::decay_t<Deleter>;
+
+            return std::unique_ptr<A, B>(function(std::forward<Arguments>(args)...),
+                std::forward<Deleter>(deleter));
+        }
+
+        const char* unicodeToUtf8(const wchar_t* unicode_str, std::string& storage);
+
+        void printErr(const std::wstring& ws);
+
+        void printOut(const std::wstring& ws);
+
+        void throwIfFalse(bool ok, const std::wstring& mes);
+
+        std::wstring getFilename(const std::wstring& path);
+
+        std::wstring getExtension(const std::wstring& filename);
+
+        bool GetProductVersionInfo(std::wstring& strProductName, std::wstring& strProductVersion,
+            std::wstring& strLegalCopyright, HMODULE hMod = nullptr);
+
+    } // namespace util
+} // namespace syncplaylists
