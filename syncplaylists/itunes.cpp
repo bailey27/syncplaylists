@@ -3,7 +3,7 @@ syncplaylists : Copies music files from specified iTunes playlists to specfied
                 directory and writes .m3u playlist files.  Deletes all music
                 and .m3u files that are not specified in the playlists.
 
-Copyright (C) 2016-2020 Bailey Brown (github.com/bailey27/cppcryptfs)
+Copyright (C) 2020 Bailey Brown (github.com/bailey27/syncplaylists)
 
 cppcryptfs is based on the design of gocryptfs (github.com/rfjakob/gocryptfs)
 
