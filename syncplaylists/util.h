@@ -46,7 +46,7 @@ namespace syncplaylists {
         std::wstring getExtension(const std::wstring& filename);
 
         bool GetProductVersionInfo(std::wstring& strProductName, std::wstring& strProductVersion,
-            std::wstring& strLegalCopyright, HMODULE hMod = nullptr);
+                                   std::wstring& strLegalCopyright, HMODULE hMod = nullptr);
 
     } // namespace util
 } // namespace syncplaylists
