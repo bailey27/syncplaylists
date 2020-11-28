@@ -27,10 +27,6 @@ syncplaylists always sorts the songs alphabetically by name and ignores leading 
 
 I found that iTunes does not return the songs in the same order they are sorted in the playlists in iTunes.  I want the songs alphabetically sorted anyway.
 
-BUGS
-----
-When printing the names of the files being deleted or copied, syncplaylists will display certain non-English characters as ?.  I am not sure why.  However, the filenames are properly written in the .m3u files and the files are copied/deleted correctly.  This happens with some languages but not others.  Spanish and Czech characters display correctly, but Russian characters display as ? when printed to the console.
-
 Usage
 ----
 Assuming your USB drive is mounted on drive e: and you want to sync the playlists named "EDM", "Rap", "Rock", and "Pop", then you would open a command prompt and run (assuming syncplaylists.exe is in your path)
@@ -41,5 +37,7 @@ syncplaylists.exe e:\ EDM Rap Rock Pop
 
 Note: the names of playlists are case sensitive.
 
-
+BUGS
+----
+When printing the names of the files being deleted or copied, syncplaylists will display certain non-English characters as ?.  I am not sure why.  However, the filenames are properly written in the .m3u files and the files are copied/deleted correctly.  This happens with some languages but not others.  Spanish and Czech characters display correctly, but Russian characters display as ? when printed to the console.
 
