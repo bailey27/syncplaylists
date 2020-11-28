@@ -35,7 +35,7 @@ Assuming your USB drive is mounted on drive e: and you want to sync the playlist
 syncplaylists.exe e:\ EDM Rap Rock Pop
 ```
 
-Note: the names of playlists are case sensitive.
+Note: the names of playlists are case-sensitive.
 
 BUGS
 ----
