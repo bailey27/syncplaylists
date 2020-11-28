@@ -23,7 +23,7 @@ syncplaylists first *DELETES* any .m3u playlist files there, and it also *DELETE
 
 Then it copies any songs that aren't already there and writes .m3u play list files for each iTunes playlist you specified consisting of the name of a song on each line.  It copies only .m4a and .mp3 files.  It skips .m4p (DRM-protected) files because they won't work in the car.
 
-syncplaylists always sorts the songs alphabetically by name and ignores leading "A " and leading "The " as well as ignoring track numbers.
+syncplaylists always sorts the songs alphabetically (case-insensitive) by name and ignores leading "A " and leading "The " as well as ignoring track numbers.
 
 I found that iTunes does not return the songs in the same order they are sorted in the play lists in iTunes.  I want the songs alphabetically sorted anyway.
 
