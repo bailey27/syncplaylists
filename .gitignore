@@ -1,32 +1,15 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+syncplaylists.opensdf
+syncplaylists.sdf
+syncplaylists/syncplaylists.vcxproj.user
+.vs/
+ipch/
+syncplaylists/x64/
+x64/
+Debug/
+Release/
+syncplaylists/Debug/
+syncplaylists/Release/
+syncplaylists/syncplaylists.aps
+Report*.vspx
+Report*.diagsession
+enc_temp_folder/
