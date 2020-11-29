@@ -77,11 +77,15 @@ namespace syncplaylists {
             const vector<Song>& pl)
         {
             
-            vector<Song> songs = pl;
+            vector<const Song*> songs(pl.size());
+
+            for (size_t i = 0; i < pl.size(); ++i) {
+                songs[i] = &pl[i];
+            }
 
             // we sort by playlist order         
-            auto less_for_songs = [](const Song& a, const Song& b) -> bool {
-                return a.order < b.order;                
+            auto less_for_songs = [](const Song* a, const Song* b) -> bool {
+                return a->order < b->order;                
             };
 
             sort(songs.begin(), songs.end(), less_for_songs);
@@ -104,10 +108,10 @@ namespace syncplaylists {
 
             string filename_utf8;
 
-            for (const auto& song : songs) {
+            for (auto song : songs) {               
                 filename_utf8.clear();
-                auto p = unicodeToUtf8(song.filename.c_str(), filename_utf8);
-                throwIfFalse(p, L"cannot convert filename " + song.filename + L" to utf8");
+                auto p = unicodeToUtf8(song->filename.c_str(), filename_utf8);
+                throwIfFalse(p, L"cannot convert filename " + song->filename + L" to utf8");
                 auto n = fwrite(p, 1, filename_utf8.length(), fl.get());
                 throwIfFalse(n == filename_utf8.length(), L"did not write correct number of bytes to " + plpath);
                 auto cw = fputc('\r', fl.get());
