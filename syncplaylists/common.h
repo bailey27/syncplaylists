@@ -35,6 +35,7 @@ namespace syncplaylists {
 		struct Song {
 			std::wstring name;
 			std::wstring filename;
+			long order;
 		};		
 
 		//                              playlist     names/filenames  

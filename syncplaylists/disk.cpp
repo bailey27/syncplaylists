@@ -46,63 +46,7 @@ namespace syncplaylists {
         using namespace std;
 
         using namespace common;
-        using namespace util;
-
-        static const wchar_t* getTrackOffset(const wchar_t* s) {
-            auto p = s;
-
-            while (*p && *p != L' ') {
-                ++p;
-            }
-
-            if (*p != L' ')
-                return s;
-
-            auto len = p - s;
-
-            if (len == 2 && ::iswdigit(s[0]) && ::iswdigit(s[1])) {
-                return s + 3;
-            } else if (len == 4 && ::iswdigit(s[0]) && s[1] == L'-' &&
-                ::iswdigit(s[2]) && ::iswdigit(s[3])) {
-                return s + 5;
-            } else {
-                return s;
-            }
-        }
-
-        static const wchar_t* ignoreAandThe(const wchar_t* s)
-        {
-            auto p = s;
-
-            while (*p && *p != L' ') {
-                ++p;
-            }
-
-            if (*p != L' ')
-                return s;
-
-            auto len = p - s;
-
-            if (len == 1 && (*s == L'A' || *s == L'a')) {
-                return s + 2;
-            } else if (len == 3) {
-                wchar_t buf[4];
-                ::memcpy(buf, s, 3 * sizeof(buf[0]));
-                buf[3] = L'\0';
-                if (::lstrcmpi(buf, L"The") == 0) {
-                    return s + 4;
-                } else {
-                    return s;
-                }
-            } else {
-                return s;
-            }
-        }
-
-        static const wchar_t* getFileNameForSort(const wchar_t* s)
-        {
-            return ignoreAandThe(getTrackOffset(s));
-        }
+        using namespace util;              
 
         static void asciiToLower(wstring& s)
         {
@@ -132,41 +76,12 @@ namespace syncplaylists {
             const wstring& plname,
             const vector<Song>& pl)
         {
+            
+            vector<Song> songs = pl;
 
-            // for whatever reason, iTunes does not return the songs in the playlists in the order they 
-            // are sorted in iTunes
-
-            // so we sort by name (if present) or filename alphabetically case-insensitive and ignoring track number and "A" and "The"
-
-            // also, we do't want duplicate filenames, so we use a map as an intermediate data structure
-
-            // if two songs have the same name, they'll probably have diffrent filenames 
-
-            unordered_map<wstring, wstring> unique_files;
-
-            for (const auto& song : pl) {
-                unique_files[song.filename] = song.name;
-            }
-
-            vector<Song> songs;
-
-            for (const auto& us : unique_files) {
-                Song song;
-                song.filename = us.first;
-                song.name = us.second;
-                songs.emplace_back(song);
-            }
-
+            // we sort by playlist order         
             auto less_for_songs = [](const Song& a, const Song& b) -> bool {
-
-                auto getNameForSort = [](const Song& song) -> const wchar_t* {
-                    if (song.name.length() > 0)
-                        return ignoreAandThe(song.name.c_str());
-                    else
-                        return getFileNameForSort(song.filename.c_str());
-                };
-
-                return ::lstrcmpi(getNameForSort(a), getNameForSort(b)) < 0;
+                return a.order < b.order;                
             };
 
             sort(songs.begin(), songs.end(), less_for_songs);

@@ -13,6 +13,8 @@ You can build syncplaylists yourself if you want using the Community Edition of 
 
 Whether or not syncplaylists does what you want, I think it would serve as reasonable example code for using the iTunes COM interface on Windows.
 
+It is probably a good idea to let iTunes consolidate/organize your library before using syncplaylists (select file->library->organize library->consolidate files).
+
 I have 2014 BMW F10, and I don't like to use my iPhone as an iPod with a cable because it skips songs sometimes.  I also don't like using bluetooth from the phone because I think I can hear the difference in sound quality vs. a hard-wired connection.
 
 My car supports playing .m4a and .mp3 files from a USB flash drive.  It also supports .m3u playlists.
@@ -23,9 +25,7 @@ syncplaylists first *DELETES* any .m3u playlist files there, and it also *DELETE
 
 Then it copies any songs that aren't already there and writes .m3u play list files for each iTunes playlist you specified consisting of the name of a song on each line.  It copies only .m4a and .mp3 files.  It skips .m4p (DRM-protected) files because they won't work in the car.
 
-syncplaylists always sorts the songs alphabetically (case-insensitive) by name and ignores leading "A " and leading "The " as well as ignoring track numbers.
-
-I found that iTunes does not return the songs in the same order they are sorted in the play lists in iTunes.  I want the songs alphabetically sorted anyway.
+syncplaylists always sorts the songs in the same order they are sorted in the playlists in iTunes.
 
 Usage
 ----
@@ -36,6 +36,12 @@ syncplaylists.exe e:\ EDM Rap Rock Pop
 ```
 
 Note: the names of playlists are case-sensitive.
+
+Limitations
+---
+Because syncplaylists puts all the files int same directory, if there is a name collision between two different audio file names, then only one of them will end up being copied.  If this happens, then if you have iTunes organizing/consolidating your library, you can right-click on the song and select "song info" and change the name of the song a little or the track number, and the file will be renamed and the collision fixed.
+
+Playlist folders have not been tested and probably won't work.
 
 BUGS
 ----

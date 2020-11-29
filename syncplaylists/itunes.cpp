@@ -111,9 +111,9 @@ namespace syncplaylists {
                     ComInterfaceWrapper<IITTrack> gt;
                     // indices are 1-based
                     hRes = tracks.iface->get_Item(i + 1, &gt.iface);
-                    throwIfFalse(hRes == S_OK, L"failed to get item " + to_wstring(i) + L" in " + plname);
+                    throwIfFalse(hRes == S_OK, L"failed to get item " + to_wstring(i) + L" in " + plname);                    
                     ITTrackKind tkind;
-                    hRes = gt.iface->get_Kind(&tkind);
+                    hRes = gt.iface->get_Kind(&tkind);                    
                     throwIfFalse(hRes == S_OK, L"failed to get track kind for item " + to_wstring(i) + L" in playist " + plname);
                     if (tkind != ITTrackKindFile) {
                         continue;
@@ -135,6 +135,9 @@ namespace syncplaylists {
                     }
 
                     Song song;
+                    
+                    hRes = ft.iface->get_PlayOrderIndex(&song.order);
+                    throwIfFalse(hRes == S_OK, L"unable to get play order index for " + filename);                   
 
                     song.filename = filename;
 

@@ -61,7 +61,7 @@ int wmain(int argc, const wchar_t *argv[])
 
         unordered_set<wstring> sync_playlists;
         wstring usbroot;
-        
+      
         if (argc < 3 || ::wcslen(argv[1]) < 3) {        
             wstring prodName, prodVer, prodCopyright;
             if (GetProductVersionInfo(prodName, prodVer, prodCopyright)) {
@@ -71,7 +71,7 @@ int wmain(int argc, const wchar_t *argv[])
             printErr(L"example:");
             printErr(wstring(argv[0]) + L" e:\\ EDM Rap Rock Pop");
             return 1;
-        }
+        }        
         usbroot = argv[1];
         for (int i = 2; i < argc; ++i) {
             sync_playlists.insert(argv[i]);
