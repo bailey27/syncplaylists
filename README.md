@@ -25,7 +25,7 @@ syncplaylists first *DELETES* any .m3u playlist files there, and it also *DELETE
 
 Then it copies any songs that aren't already there and writes .m3u play list files for each iTunes playlist you specified consisting of the name of a song on each line.  It copies only .m4a and .mp3 files.  It skips .m4p (DRM-protected) files because they won't work in the car.
 
-The .m3u files are written using utf-8 character encoding and with \cr\lf (DOS) line endings.
+The .m3u files are written using utf-8 character encoding and with CRLF (DOS) line endings.
 
 syncplaylists always sorts the songs in the same order they are sorted in the playlists in iTunes.
 
