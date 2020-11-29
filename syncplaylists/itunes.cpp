@@ -120,36 +120,34 @@ namespace syncplaylists {
                     }
                     ComInterfaceWrapper<IITFileOrCDTrack> ft;
                     hRes = gt.iface->QueryInterface(IID_IITFileOrCDTrack, reinterpret_cast<void**>(&ft.iface));
-                    throwIfFalse(hRes == S_OK, L"failed to get filetrack for item " + to_wstring(i) + L" in " + plname);
+                    throwIfFalse(hRes == S_OK, L"failed to get filetrack for item " + to_wstring(i) + L" in " + plname);                    
 
-                    CComBSTR loc;
-                    hRes = ft.iface->get_Location(&loc);
-
-                    throwIfFalse(hRes == S_OK, L"failed to get location for item " + to_wstring(i) + L" in " + plname);
-
-                    wstring filename = getFilename(loc.m_str);
-
-                    if (::lstrcmpi(getExtension(filename).c_str(), L"m4p") == 0) {
-                        printErr(L"skipping protected file " + filename);
-                        continue;
-                    }
-
-                    Song song;
-                    
-                    hRes = ft.iface->get_PlayOrderIndex(&song.order);
-                    throwIfFalse(hRes == S_OK, L"unable to get play order index for " + filename);                   
-
-                    song.filename = filename;
+                    Song song;               
 
                     CComBSTR name;
                     hRes = ft.iface->get_Name(&name);
 
-                    // we can use filename if we don't get a name
+                    // we can proceed without the name if we don't get it
                     if (hRes == S_OK) {
                         song.name = name;
                     }
 
-                    itunesfiles[filename] = loc.m_str;
+                    CComBSTR loc;
+                    hRes = ft.iface->get_Location(&loc);
+
+                    throwIfFalse(hRes == S_OK, L"failed to get location for song " + (song.name.length() > 0 ? song.name : L"at index " + to_wstring(i)) + L" in playlist " + plname);
+
+                    song.filename = getFilename(loc.m_str);
+
+                    if (::lstrcmpi(getExtension(song.filename).c_str(), L"m4p") == 0) {
+                        printErr(L"skipping protected file " + song.filename);
+                        continue;
+                    }                                      
+
+                    hRes = ft.iface->get_PlayOrderIndex(&song.order);
+                    throwIfFalse(hRes == S_OK, L"unable to get play order index for song " + (song.name.length() > 0 ? song.name : song.filename) + L" in playlist " + plname);
+
+                    itunesfiles[song.filename] = loc.m_str;
 
                     initunes[plname].emplace_back(song);
                 }
