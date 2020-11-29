@@ -27,7 +27,7 @@ Then it copies any songs that aren't already there and writes .m3u play list fil
 
 The .m3u files are written using utf-8 character encoding and with CRLF (DOS) line endings.
 
-syncplaylists always sorts the songs in the same order they are sorted in the playlists in iTunes.
+syncplaylists always sorts the songs in the same order they are sorted in the play lists in iTunes.
 
 Usage
 ----
