@@ -134,7 +134,6 @@ namespace syncplaylists {
 
                     CComBSTR loc;
                     hRes = ft.iface->get_Location(&loc);
-
                     throwIfFalse(hRes == S_OK, L"failed to get location for song " + (song.name.length() > 0 ? song.name : L"at index " + to_wstring(i)) + L" in playlist " + plname);
 
                     song.filename = getFilename(loc.m_str);
