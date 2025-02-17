@@ -182,8 +182,34 @@ namespace syncplaylists {
             const DiskFiles_t& ondisk)
         {
             for (auto const& it : itunesfiles) {
-                if (ondisk.find(it.first) == ondisk.end()) {
-                    wstring dst = usbroot + it.first;
+                wstring dst = usbroot + it.first;
+                bool shouldCopy = false;
+
+                // Check if the file is missing in the destination
+                auto found = ondisk.find(it.first);
+                if (found == ondisk.end()) {
+                    shouldCopy = true;
+                }
+                else {
+                    // File exists; check file sizes
+                    LARGE_INTEGER srcSize, dstSize;
+                    HANDLE hSrc = CreateFile(it.second.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+                    HANDLE hDst = CreateFile(dst.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+                    if (hSrc != INVALID_HANDLE_VALUE && hDst != INVALID_HANDLE_VALUE) {
+                        if (GetFileSizeEx(hSrc, &srcSize) && GetFileSizeEx(hDst, &dstSize)) {
+                            if (srcSize.QuadPart != dstSize.QuadPart) {
+                                shouldCopy = true;
+                            }
+                        }
+                    }
+
+                    if (hSrc != INVALID_HANDLE_VALUE) CloseHandle(hSrc);
+                    if (hDst != INVALID_HANDLE_VALUE) CloseHandle(hDst);
+                }
+
+                // Copy the file if needed
+                if (shouldCopy) {
                     auto cpRes = ::CopyFile(it.second.c_str(), dst.c_str(), FALSE);
                     if (cpRes) {
                         printOut(L"copied " + dst);
